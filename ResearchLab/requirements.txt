@@ -1,0 +1,14 @@
+
+requests==2.32.5
+aiohttp==3.13.2
+beautifulsoup4==4.14.2
+lxml>=4.9.0
+
+# LangChain and integrations (leave unpinned to allow matching your env)
+langchain
+langchain-core
+langchain-openai
+openai
+
+python-dotenv==1.2.1
+pydantic==2.12.3
