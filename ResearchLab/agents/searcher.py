@@ -66,23 +66,3 @@ if __name__ == "__main__":
 
 print(response)
 
-
-
-    
-    
-    
-    
-
-
-
-
-   
-# model = ChatOpenAI(model=MODEL, temperature=0.5)
-# parser = StrOutputParser()
-
-# message_template = ChatPromptTemplate.from_messages([
-#     ("system", "You are a helpful assistant that translates {FROM} to {TO}. If the text is in another language, respond that you can only translate between {FROM} and {TO}, and that the user should change the selected language. Answer with only the translation, without any additional text."),
-#     ("user", "{text}")
-# ])
-
-# chain = message_template | model | parser
