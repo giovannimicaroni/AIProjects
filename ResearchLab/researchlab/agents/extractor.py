@@ -10,7 +10,7 @@ import requests
 
 load_dotenv()
 
-class SearcherAgent():
+class ExtractorAgent():
     def __init__(self, openai_api_key: str= None, model: str = "gpt-5-nano"):
         self._openai_api_key = openai_api_key
         os.environ["OPENAI_API_KEY"] = openai_api_key
@@ -19,21 +19,21 @@ class SearcherAgent():
             model=model,
             streaming=True
         )
-        search_tool = SearchPapersTool()
-        metadata_tool = GetPaperMetadataTool()
-        pdf_tool = FindPDFLinkTool()
+        # search_tool = SearchPapersTool()
+        # metadata_tool = GetPaperMetadataTool()
+        # pdf_tool = FindPDFLinkTool()
 
-        self._tools = [search_tool, metadata_tool, pdf_tool]
+        # self._tools = [search_tool, metadata_tool, pdf_tool]
 
         self._prompt = ChatPromptTemplate.from_messages([
             ("system",
             """
-            You are a research assistant agent specialized in searching scientific papers.
+            You are a research assistant agent specialized in downloading scientific papers and extract information from them.
                 You MUST use the available tools when needed.
                 
                 Your workflow:
-                1. Use search_papers to find relevant papers.
-                2. For each interesting paper, call get_paper_metadata.
+                1. Use download_papers to download relevant papers.
+                2. For each paper, use extract_paper_info to extract relevant information from them.
                 3. If the user needs the PDF, call find_pdf_link.
             """),
             MessagesPlaceholder("messages"),
