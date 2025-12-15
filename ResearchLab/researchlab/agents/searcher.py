@@ -51,6 +51,6 @@ if __name__ == "__main__":
     ag = SearcherAgent()
     result = ag.run_query("Find papers on LSTMs predicting solar activity.")
     print(result)
-    metadata = result["response_metadata"]
+    metadata = result['messages'][2]
     final_answer = ag.llm.invoke(f"Using the following tool outputs, generate a final, concise answer:\n\n{metadata}")
     print(final_answer.content)
