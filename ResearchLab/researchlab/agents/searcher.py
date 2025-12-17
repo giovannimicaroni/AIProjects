@@ -41,10 +41,21 @@ class SearcherAgent:
             system_prompt = self.prompt
         )
 
+    def set_api_key(self, api_key: str):
+        os.environ["OPENAI_API_KEY"] = api_key
+
     def run_query(self, query: str):
-        return self.agent.invoke({
+        result = self.agent.invoke({
             "messages": [HumanMessage(content=query)]
         })
+        print(result)
+        try:
+            metadata = result['messages'][-1]
+            final_answer = self.llm.invoke(f"Using the following tool outputs, generate a final, concise answer:\n\n{metadata}")
+        except Exception as e:
+            final_answer = self.llm.invoke(query)
+        print(f'\n\n\n{final_answer}')
+        return final_answer.content
 
 
 if __name__ == "__main__":
